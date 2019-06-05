@@ -6,21 +6,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * GET /inventory/{storeId}/{sku}
+ * GET /inventory/{storeId}/{sku} -> curl -Lik http://localhost:8080/inventory/1/2
  * GET /inventory/{storeId} (optional)
- * POST /inventory/{storeId}/order/{sku}
+ * POST /inventory/{storeId}/order/{sku} ->
  * GET /inventory/{storeId}/anticipated/{sku}
  */
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
-
     private static final Logger logger = LoggerFactory.getLogger(InventoryController.class);
 
     private final InventoryService inventoryService;
@@ -36,5 +32,8 @@ public class InventoryController {
         return ResponseEntity.ok(inventoryService.getSkuInventoryForBranch(storeId, sku));
     }
 
-
+    @PostMapping("/{storeId}/order/{sku}")
+    public ResponseEntity<String> placeOrder(@PathVariable("storeId") Long storeId, @PathVariable("sku") Long sku) {
+        return ResponseEntity.ok(inventoryService.placeOrder(storeId, sku));
+    }
 }

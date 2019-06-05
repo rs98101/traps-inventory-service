@@ -18,13 +18,25 @@ public class InventoryService {
     private Map<Store, Map<Long, ItemInventory>> itemsByStore;
 
     public ItemInventory getSkuInventoryForBranch(Long storeId, Long sku) {
+        checkStoreAndSku(storeId, sku);
+
+        Store store = stores.get(storeId);
+        return itemsByStore.get(store).get(sku);
+    }
+
+    public String placeOrder(Long storeId, Long sku) {
+        checkStoreAndSku(storeId, sku);
+        Store store = stores.get(storeId);
+        ItemInventory item = itemsByStore.get(store).get(sku);
+        return "Ordered 100 more " + item.getDescription() + "s";
+    }
+
+    private void checkStoreAndSku(Long storeId, Long sku) {
         if (!stores.containsKey(storeId)) throw new RuntimeException("Unknown store: " + storeId);
 
         Store store = stores.get(storeId);
 
         if (!itemsByStore.get(store).containsKey(sku)) throw new RuntimeException("Unknown sku: " + sku);
-
-        return itemsByStore.get(store).get(sku);
     }
 
     @PostConstruct
