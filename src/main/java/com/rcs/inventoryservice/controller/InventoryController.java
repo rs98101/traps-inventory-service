@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * GET /inventory/{storeId}/{sku} -> curl -Lik http://localhost:8080/inventory/1/2
  * GET /inventory/{storeId} (optional)
  * POST /inventory/{storeId}/order/{sku} ->
- * GET /inventory/{storeId}/anticipated/{sku}
+ * GET /inventory/{storeId}/anticipated/{sku} -> curl -Lik http://localhost:8080/inventory/1/anticipated/2
  */
 @RestController
 @RequestMapping("/inventory")
@@ -35,5 +35,12 @@ public class InventoryController {
     @PostMapping("/{storeId}/order/{sku}")
     public ResponseEntity<String> placeOrder(@PathVariable("storeId") Long storeId, @PathVariable("sku") Long sku) {
         return ResponseEntity.ok(inventoryService.placeOrder(storeId, sku));
+    }
+
+    //uncomment me
+    @GetMapping(value = "/{storeId}/anticipated/{sku}")
+    public ResponseEntity<ItemInventory> getAnticipatedSkuInventoryForBranch(
+            @PathVariable("storeId") Long storeId, @PathVariable("sku") Long sku) {
+        return ResponseEntity.ok(inventoryService.getAnticipatedSkuInventoryForBranch(storeId, sku));
     }
 }

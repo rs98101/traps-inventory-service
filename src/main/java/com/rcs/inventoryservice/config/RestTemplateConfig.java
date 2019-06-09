@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestTemplateConfig {
-  @Value("baseUrl")
+  @Value("${prediction-service.url}")
   private String baseUrl;
 
   @Bean

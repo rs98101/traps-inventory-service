@@ -16,14 +16,17 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InventoryService {
     private static final Logger logger = LoggerFactory.getLogger(InventoryService.class);
 
-    @Autowired
     private InventoryPredictionServiceClient inventoryPredictionServiceClient;
     private Map<Long, Store> stores;
     private Map<Store, Map<Long, ItemInventory>> itemsByStore;
 
+    @Autowired
+    public InventoryService(InventoryPredictionServiceClient inventoryPredictionServiceClient) {
+        this.inventoryPredictionServiceClient = inventoryPredictionServiceClient;
+    }
+
     public ItemInventory getSkuInventoryForBranch(Long storeId, Long sku) {
         checkStoreAndSku(storeId, sku);
-        inventoryPredictionServiceClient.getPredictedInventory();
         Store store = stores.get(storeId);
         return itemsByStore.get(store).get(sku);
     }
@@ -33,6 +36,12 @@ public class InventoryService {
         Store store = stores.get(storeId);
         ItemInventory item = itemsByStore.get(store).get(sku);
         return "Ordered 100 more " + item.getDescription() + "s";
+    }
+
+    //uncomment me
+    public ItemInventory getAnticipatedSkuInventoryForBranch(Long storeId, Long sku) {
+        ItemInventory itemInventory = inventoryPredictionServiceClient.getPredictedInventory(storeId, sku);
+        return itemInventory;
     }
 
     private void checkStoreAndSku(Long storeId, Long sku) {
