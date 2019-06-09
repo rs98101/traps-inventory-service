@@ -38,7 +38,7 @@ public class InventoryPredictionServiceClientTest {
         .willRespondWith()
         .status(200)
         .body(LambdaDsl.newJsonBody((o) -> o
-            .stringType("quantity", "1")
+            .numberType("quantity", 1)
      ).build())
     .toPact();
   }
