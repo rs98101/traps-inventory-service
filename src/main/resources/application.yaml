@@ -7,4 +7,5 @@ spring:
       fail_on_empty_beans: false
 
 prediction-service:
-  url: http://localhost:8081 # http://inventory-prediction-service-lb-1162006621.us-west-2.elb.amazonaws.com
+  #url: http://localhost:8081 # local dev
+  url: http://inventory-prediction-service-lb-1162006621.us-west-2.elb.amazonaws.com # production
