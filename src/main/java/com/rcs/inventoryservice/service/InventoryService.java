@@ -1,9 +1,11 @@
 package com.rcs.inventoryservice.service;
 
+import com.rcs.inventoryservice.client.InventoryPredictionServiceClient;
 import com.rcs.inventoryservice.model.ItemInventory;
 import com.rcs.inventoryservice.model.Store;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -14,12 +16,14 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InventoryService {
     private static final Logger logger = LoggerFactory.getLogger(InventoryService.class);
 
+    @Autowired
+    private InventoryPredictionServiceClient inventoryPredictionServiceClient;
     private Map<Long, Store> stores;
     private Map<Store, Map<Long, ItemInventory>> itemsByStore;
 
     public ItemInventory getSkuInventoryForBranch(Long storeId, Long sku) {
         checkStoreAndSku(storeId, sku);
-
+        inventoryPredictionServiceClient.getPredictedInventory();
         Store store = stores.get(storeId);
         return itemsByStore.get(store).get(sku);
     }

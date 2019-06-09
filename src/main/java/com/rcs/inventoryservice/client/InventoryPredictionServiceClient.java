@@ -15,11 +15,12 @@ public class InventoryPredictionServiceClient {
   @Autowired
   private RestTemplate restTemplate;
 
-  public void getPredictedInventory() {
+  public ItemInventory getPredictedInventory() {
     ResponseEntity<ItemInventory> itemInventory =
         restTemplate.getForEntity("http://localhost:8081/prediction/1/2",ItemInventory.class);
     ItemInventory inventory = itemInventory.getBody();
     System.out.println(inventory.getQuantity());
+    return inventory;
   }
 
 }
