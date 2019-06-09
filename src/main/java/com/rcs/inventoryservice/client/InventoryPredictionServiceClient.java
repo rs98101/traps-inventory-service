@@ -1,11 +1,8 @@
 package com.rcs.inventoryservice.client;
 
-import static jdk.nashorn.internal.objects.Global.println;
-
 import com.rcs.inventoryservice.model.ItemInventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
