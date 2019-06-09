@@ -5,6 +5,7 @@ public class ItemInventory {
     private String description;
     private int quantity;
 
+    public ItemInventory() {}
     public ItemInventory(Long sku, String description, int quantity) {
         this.sku = sku;
         this.description = description;
