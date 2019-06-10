@@ -12,7 +12,6 @@ import au.com.dius.pact.core.model.RequestResponsePact;
 import com.rcs.inventoryservice.config.RestTemplateConfig;
 import com.rcs.inventoryservice.model.ItemInventory;
 import io.pactfoundation.consumer.dsl.LambdaDsl;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

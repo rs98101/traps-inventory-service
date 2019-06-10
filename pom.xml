@@ -150,7 +150,7 @@
         <version>2.18</version>
         <configuration>
           <systemPropertyVariables>
-             <pact.rootDir>target/mypacts</pact.rootDir>
+             <pact.rootDir>src/test/resources/mypacts</pact.rootDir>
             <buildDirectory>${project.build.directory}</buildDirectory>
           </systemPropertyVariables>
         </configuration>

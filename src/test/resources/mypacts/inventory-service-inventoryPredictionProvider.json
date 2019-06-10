@@ -1,0 +1,62 @@
+{
+  "provider": {
+    "name": "inventoryPredictionProvider"
+  },
+  "consumer": {
+    "name": "inventory-service"
+  },
+  "interactions": [
+    {
+      "description": "A request to /prediction/1/2",
+      "request": {
+        "method": "GET",
+        "path": "/prediction/1/2"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset\u003dUTF-8"
+        },
+        "body": {
+          "quantity": 1
+        },
+        "matchingRules": {
+          "body": {
+            "$.quantity": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset\u003d[\\w\\-]+)?"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "Inventory for Sku 2 in store 1 exists"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.0-beta.2"
+    }
+  }
+}
