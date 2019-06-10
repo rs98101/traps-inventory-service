@@ -56,8 +56,8 @@ public class InventoryPredictionServiceClientTest {
     assertThat(response.getStatusCode().value()).isEqualTo(200);
     assertThat(response.getBody().getQuantity()).isEqualTo(1);
 
-//    final ItemInventory inventory = inventoryPredictionServiceClient.getPredictedInventory(1l, 2l);
-//    assertThat(inventory.getQuantity()).isPositive();
+    final ItemInventory inventory = inventoryPredictionServiceClient.getPredictedInventory(1l, 2l);
+    assertThat(inventory.getQuantity()).isPositive();
   }
 
 }
