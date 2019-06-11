@@ -39,10 +39,10 @@ public class InventoryService {
     }
 
     //uncomment me
-    public ItemInventory getAnticipatedSkuInventoryForBranch(Long storeId, Long sku) {
-        ItemInventory itemInventory = inventoryPredictionServiceClient.getPredictedInventory(storeId, sku);
-        return itemInventory;
-    }
+//    public ItemInventory getAnticipatedSkuInventoryForBranch(Long storeId, Long sku) {
+//        ItemInventory itemInventory = inventoryPredictionServiceClient.getPredictedInventory(storeId, sku);
+//        return itemInventory;
+//    }
 
     private void checkStoreAndSku(Long storeId, Long sku) {
         if (!stores.containsKey(storeId)) throw new RuntimeException("Unknown store: " + storeId);

@@ -38,9 +38,9 @@ public class InventoryController {
     }
 
     //uncomment me
-    @GetMapping(value = "/{storeId}/anticipated/{sku}")
-    public ResponseEntity<ItemInventory> getAnticipatedSkuInventoryForBranch(
-            @PathVariable("storeId") Long storeId, @PathVariable("sku") Long sku) {
-        return ResponseEntity.ok(inventoryService.getAnticipatedSkuInventoryForBranch(storeId, sku));
-    }
+//    @GetMapping(value = "/{storeId}/anticipated/{sku}")
+//    public ResponseEntity<ItemInventory> getAnticipatedSkuInventoryForBranch(
+//            @PathVariable("storeId") Long storeId, @PathVariable("sku") Long sku) {
+//        return ResponseEntity.ok(inventoryService.getAnticipatedSkuInventoryForBranch(storeId, sku));
+//    }
 }
